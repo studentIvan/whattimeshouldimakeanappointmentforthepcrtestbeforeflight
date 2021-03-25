@@ -1,10 +1,18 @@
 [
   {
     "url": "/",
-    "title": "PCR Time Calculator - what time should I make an appointment for the pcr test before flight?"
+    "title": "PCR Time Calculator - what time should I make an appointment for the pcr test before flight?",
+    "description": "When PCR test or what time you need to take a PCR analysis for a trip abroad, 72 hours before departure",
+    "keywords": "pcr, 72hours, 72, analysis, test, coronavirus, covid-19, time, date, flight, departure, calculate",
+    "canonical": "/",
+    "lang": "en"
   },
   {
-    "url": "/ru",
-    "title": "PCR Time Calculator - в какое время я должен записаться на ПЦР-тест перед полетом?"
+    "url": "/ru/",
+    "title": "PCR Time Calculator - в какое время я должен записаться на ПЦР-тест перед полетом?",
+    "description": "Когда сдавать лабораторный ПЦР тест на коронавирус COVID-19, или как считается время, в которое необходимо сдать ПЦР анализ для поездки за границу, за 72 часа до вылета",
+    "keywords": "пцр, 72 часа, 72, анализ, тест, коронавирус, covid-19, время, дата, рейс, вылет, расчет, калькулятор",
+    "canonical": "/ru/",
+    "lang": "ru"
   }
 ]

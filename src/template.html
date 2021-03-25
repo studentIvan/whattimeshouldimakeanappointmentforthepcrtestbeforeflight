@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= htmlWebpackPlugin.options.CLI_DATA.preRenderData.lang %>">
 	<head>
 		<meta charset="utf-8">
 		<title><% preact.title %></title>
-		<meta name="description" content="">
-		<meta name="keywords" content="" />
+		<meta name="description" content="<%= htmlWebpackPlugin.options.CLI_DATA.preRenderData.description %>">
+		<meta name="keywords" content="<%= htmlWebpackPlugin.options.CLI_DATA.preRenderData.keywords %>" />
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,10 +18,10 @@
     <meta name="msapplication-TileColor" content="#ffc40d">
     <meta name="msapplication-config" content="/assets/icons/browserconfig.xml">
     <meta name="theme-color" content="#00675c">
-    <link rel="canonical" href="https://whattimeshouldimakeanappointmentforthepcrtestbeforeflight.com/">
+    <link rel="canonical" href="https://whattimeshouldimakeanappointmentforthepcrtestbeforeflight.com<%= htmlWebpackPlugin.options.CLI_DATA.preRenderData.canonical %>">
     <link href="https://whattimeshouldimakeanappointmentforthepcrtestbeforeflight.com/" hreflang="x-default" rel="alternate">
     <link href="https://whattimeshouldimakeanappointmentforthepcrtestbeforeflight.com/" hreflang="en" rel="alternate">
-    <link href="https://whattimeshouldimakeanappointmentforthepcrtestbeforeflight.com/ru" hreflang="ru" rel="alternate">
+    <link href="https://whattimeshouldimakeanappointmentforthepcrtestbeforeflight.com/ru/" hreflang="ru" rel="alternate">
 		<% preact.headEnd %>
 	</head>
 	<body>

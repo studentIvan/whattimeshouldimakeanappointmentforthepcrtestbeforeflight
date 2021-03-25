@@ -7,7 +7,7 @@ const App = () => (
 	<div id="app">
 		<Router>
       <Calc path="/" lang="en" defaultLang />
-			<Calc path="/:lang" />
+			<Calc path="/:lang/" />
 		</Router>
 	</div>
 )
