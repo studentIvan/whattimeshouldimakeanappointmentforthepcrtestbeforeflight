@@ -109,10 +109,10 @@ const Calc = (props) => {
             </Translate>
           </div>
           { showExtraSettings && (
-            <div style={{ marginBottom: 20 }}>
+            <div class={ style.extraSettings }>
               <div>
                 <Translate component="label" for="testHoursMin">
-                  Ожидаемое время получения результата ПЦР-теста:
+                  Expected time to receive the PCR test result:
                 </Translate>
                 <input
                   type="range"
@@ -127,7 +127,7 @@ const Calc = (props) => {
               </div>
               <div>
                 <Translate component="label" for="testHoursMax">
-                  Максимальное время получения результата ПЦР-теста:
+                  Maximum time to get the PCR test result:
                 </Translate>
                 <input
                   type="range"
@@ -142,7 +142,7 @@ const Calc = (props) => {
               </div>
               <div>
                 <Translate component="label" for="minBufferHours">
-                  Минимальное время в запасе:
+                  Minimum time in stock:
                 </Translate>
                 <input
                   type="range"
@@ -162,7 +162,7 @@ const Calc = (props) => {
               </div>
               <div>
                 <Translate component="label" for="maxBufferHours">
-                  Максимальное время в запасе:
+                  Maximum time in stock:
                 </Translate>
                 <input
                   type="range"

@@ -27,7 +27,7 @@
 @media only screen and (max-width: 600px) {
   .mobileHeader {
     display: inline-block;
-    font-size: 17px;
+    font-size: 16px;
     padding: 0 15px;
   }
 
