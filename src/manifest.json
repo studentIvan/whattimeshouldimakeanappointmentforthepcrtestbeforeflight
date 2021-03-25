@@ -1,6 +1,6 @@
 {
-  "name": "whattimeshouldimakeanappointmentforthepcrtestbeforeflight",
-  "short_name": "whattimeshouldimakeanappointmentforthepcrtestbeforeflight",
+  "name": "PCR Time Calculator",
+  "short_name": "PCR Time Calc",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
