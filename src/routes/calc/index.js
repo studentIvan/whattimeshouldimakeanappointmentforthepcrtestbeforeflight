@@ -19,7 +19,7 @@ const Calc = (props) => {
       document.head.querySelector('meta[name="keywords"]').content =
         translate('pcr, 72hours, 72, analysis, test, coronavirus, covid-19, time, date, flight, departure, calculate', props.lang);
       document.head.querySelector('link[rel="canonical"]').href =
-        `https://whattimeshouldimakeanappointmentforthepcrtestbeforeflight.com/${ props.lang === 'en' ? '' : 'ru' }`;
+        `https://whattimeshouldimakeanappointmentforthepcrtestbeforeflight.com/${ props.lang === 'en' ? '' : 'ru/' }`;
     }
   });
 
