@@ -52,6 +52,14 @@ const Calc = (props) => {
     );
   }
 
+  const pcrDateTimeBegin = flightDateObj.subtractHours(minBufferHours + testHoursMax);
+  let pcrDateTimeEnd = flightDateObj.subtractHours((maxBufferHours - bufferHoursShift) + testHoursMax);
+  const impossibleUnavailableTime = Boolean(pcrDateTimeBegin > pcrDateTimeEnd);
+  const minUnavailableDatetime = (flightDateObj ? flightDateObj.subtractHours(72) : minDatetime);
+  if (pcrDateTimeEnd < minUnavailableDatetime) {
+    pcrDateTimeEnd = minUnavailableDatetime;
+  }
+
   return (
     <div>
       <Header {...props} />
@@ -77,6 +85,9 @@ const Calc = (props) => {
               <Translate component="option" value="Turkey">
                 Turkey
               </Translate>
+              <Translate component="option" value="UAE">
+                UAE
+              </Translate>
               <Translate component="option" value="other">
                 other country
               </Translate>
@@ -91,7 +102,7 @@ const Calc = (props) => {
               name="busyDate"
               id="busyDate"
               value={ busyDate }
-              min={ minDatetime }
+              min={ minUnavailableDatetime }
               max={ flightDate }
               onChange={ value => setBusyDate(value) }
             />
@@ -189,15 +200,47 @@ const Calc = (props) => {
               <a href="https://register.health.gov.tr" target="_blank" rel="noopener noreferrer">The form for entry to Turkey</a>
               (for the private HES code receiving) must be completed after the above date/time (72 hours before departure).
             </Translate>
-          </div>}
-          <div class={ style.heroResult } style={{ marginTop: 20, marginBottom: 20 }}>
+          </div> }
+          { arrivalCountry === 'UAE' && <div style={{ marginTop: 20 }}>
             <Translate component="div">
-              It is necessary to make an appointment for the PCR test in the interval:
+              The negative COVID-19 PCR test result must be presented in printed certificate format by the traveller on arrival. The certificate must be in English or Arabic only. Handwritten certificates will not be accepted.
             </Translate>
-            <LocalizedDatetime dateTime={ flightDateObj.subtractHours(minBufferHours + testHoursMax) } />
-            &nbsp;&minus;&nbsp;
-            <LocalizedDatetime dateTime={ flightDateObj.subtractHours((maxBufferHours - bufferHoursShift) + testHoursMax) } />
-          </div>
+          </div> }
+          { arrivalCountry === 'UAE' && <div style={{ marginTop: 10 }}>
+            <Translate component="div">
+              <a href="https://u.ae/en/information-and-services/justice-safety-and-the-law/handling-the-covid-19-outbreak/travelling-amid-covid-19/travelling-to-the-uae" target="_blank" rel="noopener noreferrer">Check the UAE information site</a>
+              to get the latest information.
+            </Translate>
+          </div> }
+          { arrivalCountry === 'UAE' && <div style={{ marginTop: 10, marginBottom: 20 }}>
+            <Translate component="div">
+              UAE airports can have their own additional restrictions. E.g. 72 hours test validity against 96 allowed by government.
+              <a href="https://www.dubaiairports.ae/alert/latest-covid-19-update-" target="_blank" rel="noopener noreferrer">Check the Dubai Airports site</a>
+              for example.
+            </Translate>
+          </div> }
+          { impossibleUnavailableTime ? (
+            <div class={ style.heroResult } style={{ marginTop: 20, marginBottom: 20 }}>
+              <Translate component="div">
+                Check everything carefully - at the specified time, you risk not having time to get the test results!
+              </Translate>
+              <Translate component="div">
+                It is necessary to make an appointment for the PCR test in the interval:
+              </Translate>
+              <LocalizedDatetime dateTime={ pcrDateTimeEnd } />
+              &nbsp;&minus;&nbsp;
+              <LocalizedDatetime dateTime={ pcrDateTimeBegin } />
+            </div>
+          ) : (
+            <div class={ style.heroResult } style={{ marginTop: 20, marginBottom: 20 }}>
+              <Translate component="div">
+                It is necessary to make an appointment for the PCR test in the interval:
+              </Translate>
+              <LocalizedDatetime dateTime={ pcrDateTimeBegin } />
+              &nbsp;&minus;&nbsp;
+              <LocalizedDatetime dateTime={ pcrDateTimeEnd } />
+            </div>
+          ) }
           <Translate component="p">
             The result of the PCR test must be in English and contain the number of your passport (ID). Do not perform a PCR test on the domestic passport (if applicable).
           </Translate>

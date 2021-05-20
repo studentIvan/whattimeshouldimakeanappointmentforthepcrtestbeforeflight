@@ -14,6 +14,7 @@ const DICT = {
   'My flight leaves at': { ru: 'Я вылетаю' },
   to: { ru: 'в' },
   Turkey: { ru: 'Турцию' },
+  UAE: { ru: 'ОАЭ' },
   'other country': { ru: 'другую страну' },
   'Also, I will be unavailable since': { ru: 'При этом, я буду недоступен, начиная с' },
   'show formula settings': { ru: 'показать настройки формулы' },
@@ -21,6 +22,20 @@ const DICT = {
     { ru: 'необходимо заполнять после вышеуказанной даты/времени (72 часа до вылета).' },
   'The form for entry to Turkey':
     { ru: 'Форму для получения HES-кода Турции' },
+  'Check the UAE information site':
+    { ru: 'Посмотрите официальный сайт ОАЭ' },
+  'to get the latest information.':
+    { ru: 'чтобы прочитать последнюю актуальную информацию.' },
+  'UAE airports can have their own additional restrictions. E.g. 72 hours test validity against 96 allowed by government.':
+    { ru: 'Аэропорты ОАЭ могут иметь свои собственные дополнительные ограничения, например, 72 часа действия теста против 96, разрешенных правительством.' },
+  'Check the Dubai Airports site':
+    { ru: 'Проверьте сайт Dubai Airports' },
+  'for example.':
+    { ru: 'для примера.' },
+  'The negative COVID-19 PCR test result must be presented in printed certificate format by the traveller on arrival. The certificate must be in English or Arabic only. Handwritten certificates will not be accepted.':
+    { ru: 'Отрицательный результат ПЦР-теста должен быть на бумаге с мокрой печатью. ОАЭ принимает сертификаты только на английском или арабском языках. Рукописные сертификаты не принимаются.' },
+  'Check everything carefully - at the specified time, you risk not having time to get the test results!':
+    { ru: 'Проверьте всё внимательно - по указанному времени вы рискуете не успеть получить результаты теста!' },
   'It is necessary to make an appointment for the PCR test in the interval:':
     { ru: 'Записаться на сдачу ПЦР теста необходимо в промежутке:' },
   'When PCR test or what time you need to take a PCR analysis for a trip abroad, 72 hours before departure':
@@ -63,6 +78,7 @@ export const detectLanguage = () => navigator.language.split('-').shift();
 export const translate = (source, lang = 'en') => lang === 'en' || !DICT[source] ? source : DICT[source][lang] || source;
 export const translatePlural = (n, lang = 'en', dict) => `${ n } ${ dict[(new Intl.PluralRules(lang)).select(n)][lang] }`;
 const getCorrectTextForTranslation = c => c && c.trim().replace(/\n(?:\s+)?/g, ' ');
+const isDateValid = d => d instanceof Date && !isNaN(d);
 
 export const langIsNotFound = ({ lang, defaultLang }) => !SUPPORTED_LANGS.includes(lang) || (lang === 'en' && !defaultLang);
 
@@ -76,8 +92,8 @@ export const createTranslateComponent = ({ lang }) => {
 };
 
 export const createLocalizedDatetimeComponent = ({ lang }) => {
-  return ({ dateTime, component = 'time', ...props }) => h(component, { ...props, dateTime: dateTime.toISOString(),
-    children: getLDateFromDateObj(dateTime, lang) });
+  return ({ dateTime, component = 'time', ...props }) => h(component, { ...props, dateTime: (isDateValid(dateTime) ? dateTime : new Date()).toISOString(),
+    children: getLDateFromDateObj((isDateValid(dateTime) ? dateTime : new Date()), lang) });
 };
 export const createLocalizedHoursComponent = ({ lang }) => {
   return ({ hours, component = 'output', ...props }) => h(component, { ...props, children: translatePlural(hours, lang, HOURS_STRINGS) });
