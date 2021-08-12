@@ -265,6 +265,8 @@ const Calc = (props) => {
         { props.lang === 'ru' ? <a href="https://t.me/joinchat/WQZ3VS1X2D_gIZk4" class={ style.telegram } target="_blank" rel="noopener noreferrer">
           Подпишитесь на мой telegram канал
         </a> : '' }
+        { props.lang === 'zh' ? <a href="https://t.me/tmzhang91" class={ style.telegram } target="_blank" rel="noopener noreferrer">感谢@tmzhang91</a> : '' }
+        { props.lang === 'zh' ? <span>博士生在俄罗斯母亲的帮助翻译成中文。</span> : '' }
       </Translate>
     </div>
   );

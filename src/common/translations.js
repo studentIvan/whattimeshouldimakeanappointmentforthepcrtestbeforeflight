@@ -188,7 +188,7 @@ const DICT = {
     es: 'Es necesario hacer una cita para la prueba de PCR en el intervalo:',
     fr: 'Il est nécessaire de prendre rendez-vous pour le test PCR dans l\'intervalle:',
     de: 'Es ist notwendig, einen Termin für den PCR-Test im Intervall zu vereinbaren:',
-    zh: '必须在一下时间段内预约进行PCR检测',
+    zh: '必须在以下时间段内预约进行PCR检测：',
     ar: 'من الضروري تحديد موعد لاختبار PCR في الفاصل الزمني:',
   },
   'When PCR test or what time you need to take a PCR analysis for a trip abroad, 72 hours before departure': {
@@ -236,7 +236,7 @@ const DICT = {
     es: 'El resultado de la prueba de PCR se puede mostrar a la salida en forma electrónica, si hay un código QR que se puede utilizar para verificar esta prueba.',
     fr: 'Le résultat du test PCR peut être affiché au départ sous forme électronique, s\'il existe un code QR qui peut être utilisé pour vérifier ce test.',
     de: 'Das Ergebnis des PCR-Tests kann bei der Abreise in elektronischer Form angezeigt werden, wenn ein QR-Code zur Überprüfung dieses Tests verwendet werden kann.',
-    zh: 'PCR测试的结果可以在出发时以电子形式显示，如果有可用于检查此测试的QR码。',
+    zh: '在有QR码的情况下，PCR检测结果可以在出发前以电子版形式出示。',
     ar: 'يمكن عرض نتيجة اختبار PCR عند المغادرة في شكل إلكتروني ، إذا كان هناك رمز QR يمكن استخدامه للتحقق من هذا الاختبار.',
   },
   'If there is no QR code the result should be on paper with a "live" stamp of the clinic.': {
@@ -244,7 +244,7 @@ const DICT = {
     es: 'Si no hay código QR, el resultado debe estar en papel con un sello "en vivo" de la clínica.',
     fr: 'S\'il n\'y a pas de code QR, le résultat doit être sur papier avec un tampon "en direct" de la clinique.',
     de: 'Wenn es keinen QR-Code gibt, sollte das Ergebnis auf Papier mit einem "Live" - Stempel der Klinik sein.',
-    zh: '如果没有QR码，结果应该在纸上，并带有诊所的"现场"印章。',
+    zh: '如果在检测报告上没有QR码，那么在报告上需要有检测机构（如医院）的印章',
     ar: 'إذا لم يكن هناك رمز الاستجابة السريعة يجب أن تكون النتيجة على الورق مع ختم "مباشر" للعيادة.',
   },
   'Do a bookmark! Developed for fun by Ivan Maslov': {
@@ -252,7 +252,7 @@ const DICT = {
     es: '¡Haz un marcador! Desarrollado para la diversión por Ivan Maslov',
     fr: 'Faites un signet! Développé pour le plaisir par Ivan Maslov',
     de: 'Mach ein Lesezeichen! Entwickelt für Spaß von Ivan Maslov',
-    zh: '做一个书签！ 由伊万*马斯洛夫开发的乐趣。 感谢@tmzhang91博士生在俄罗斯母亲的帮助翻译成中文。',
+    zh: '做一个书签！ 由伊万*马斯洛夫开发的乐趣',
     ar: 'هل المرجعية! وضعت للمتعة من قبل إيفان ماسلوف',
   },
   'Expected time to receive the PCR test result:': {
