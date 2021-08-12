@@ -252,7 +252,7 @@ const DICT = {
     es: '¡Haz un marcador! Desarrollado para la diversión por Ivan Maslov',
     fr: 'Faites un signet! Développé pour le plaisir par Ivan Maslov',
     de: 'Mach ein Lesezeichen! Entwickelt für Spaß von Ivan Maslov',
-    zh: '做一个书签！ 由伊万*马斯洛夫开发的乐趣',
+    zh: '做一个书签！ 由伊万*马斯洛夫开发的乐趣。 感谢@tmzhang91博士生在俄罗斯母亲的帮助翻译成中文。',
     ar: 'هل المرجعية! وضعت للمتعة من قبل إيفان ماسلوف',
   },
   'Expected time to receive the PCR test result:': {
