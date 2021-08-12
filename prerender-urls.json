@@ -16,5 +16,50 @@
     "keywords": "пцр, 72 часа, 72, анализ, тест, коронавирус, covid-19, время, дата, рейс, вылет, расчет, калькулятор",
     "canonical": "/ru/",
     "lang": "ru"
+  },
+  {
+    "url": "/es/",
+    "title": "PCR Time Calculator - ¿a qué hora debo inscribirme en una prueba de PCR antes del vuelo?",
+    "title2": "PCR Time Calculator - ¿a qué hora debo inscribirme en una prueba de PCR antes del vuelo?",
+    "description": "Cuando la prueba de PCR o a qué hora necesita tomar un análisis de PCR para un viaje al extranjero, 72 horas antes de la salida",
+    "keywords": "pcr, 72 horas, 72, análisis, prueba, coronavirus, covid-19, hora, fecha, vuelo, salida, calculadora",
+    "canonical": "/es/",
+    "lang": "es"
+  },
+  {
+    "url": "/fr/",
+    "title": "PCR Time Calculator - à quelle heure dois-je m'inscrire pour un test PCR avant le vol?",
+    "title2": "PCR Time Calculator - à quelle heure dois-je m'inscrire pour un test PCR avant le vol?",
+    "description": "Quand test PCR ou à quelle heure vous devez effectuer une analyse PCR pour un voyage à l 'étranger, 72 heures avant le départ",
+    "keywords": "pcr, 72 heures, 72, analyse, test, coronavirus, covid-19, heure, date, vol, départ, calculatrice",
+    "canonical": "/fr/",
+    "lang": "fr"
+  },
+  {
+    "url": "/de/",
+    "title": "PCR Time Calculator - wann sollte ich mich vor dem Flug für einen PCR-Test anmelden?",
+    "title2": "PCR Time Calculator - wann sollte ich mich vor dem Flug für einen PCR-Test anmelden?",
+    "description": "Wann PCR-Test oder zu welcher Zeit Sie eine PCR-Analyse für eine Auslandsreise benötigen, 72 Stunden vor Abflug",
+    "keywords": "PCR, 72 Stunden, 72, Analyse, Test, Coronavirus, Covid-19, Uhrzeit, Datum, Flug, Abflug, Taschenrechner",
+    "canonical": "/de/",
+    "lang": "de"
+  },
+  {
+    "url": "/zh/",
+    "title": "PCR Time Calculator - PCR时间计算器",
+    "title2": "PCR Time Calculator - PCR时间计算器",
+    "description": "在出发前72小时进行PCR测试时或出国旅行需要什么时候进行PCR分析",
+    "keywords": "pcr，72 小时，72，分析，测试，冠状病毒，covid-19，时间，日期，航班，出发，计算器",
+    "canonical": "/zh/",
+    "lang": "zh"
+  },
+  {
+    "url": "/ar/",
+    "title": "PCR Time Calculator-في أي وقت يجب تحديد موعد لاختبار pcr قبل الرحلة؟",
+    "title2": "PCR Time Calculator-في أي وقت يجب تحديد موعد لاختبار pcr قبل الرحلة؟",
+    "description": "عند اختبار PCR أو في أي وقت تحتاج إلى إجراء تحليل PCR لرحلة إلى الخارج ، قبل 72 ساعة من المغادرة",
+    "keywords": "pcr, 72hours, 72, تحليل, اختبار, كورونافيروس, covid-19, الوقت, تاريخ, رحلة, المغادرة, حساب",
+    "canonical": "/ar/",
+    "lang": "ar"
   }
 ]

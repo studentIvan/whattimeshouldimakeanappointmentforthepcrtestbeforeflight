@@ -61,7 +61,7 @@ const Calc = (props) => {
   }
 
   return (
-    <div>
+    <div dir={ props.lang === 'ar' ? 'rtl' : 'ltr' }>
       <Header {...props} />
       <div class={ style.calc }>
         <div class={ style.calcForm }>
