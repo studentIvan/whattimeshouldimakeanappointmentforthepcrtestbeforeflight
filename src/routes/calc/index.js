@@ -10,6 +10,8 @@ import style from './style.css';
 const Calc = (props) => {
   extendDatePrototype();
 
+  const [arrivalCountry, setArrivalCountry] = useState('Turkey');
+
   useEffect(() => {
     if (!langIsNotFound(props)) {
       document.documentElement.lang = props.lang;
@@ -21,6 +23,7 @@ const Calc = (props) => {
       document.head.querySelector('link[rel="canonical"]').href =
         `https://whattimeshouldimakeanappointmentforthepcrtestbeforeflight.com/${ props.lang === 'en' ? '' : 'ru/' }`;
     }
+    /** @todo provide arrivalCountry into the path or query param */
   });
 
   /** state values */
@@ -30,8 +33,9 @@ const Calc = (props) => {
   const [testHoursMax, setTestHoursMax] = useState(48);
   const [minBufferHours, setMinBufferHours] = useState(18);
   const [maxBufferHours, setMaxBufferHours] = useState(5);
-  const [arrivalCountry, setArrivalCountry] = useState('Turkey');
   const [showExtraSettings, setShowExtraSettings] = useState(false);
+
+  const mode96 = arrivalCountry === 'Maldives';
 
   const minDatetime = (new Date()).getDatetimeLocalValue();
   const flightDateObj = new Date(flightDate);
@@ -52,10 +56,11 @@ const Calc = (props) => {
     );
   }
 
+  console.log(minBufferHours, testHoursMax, minBufferHours + testHoursMax);
   const pcrDateTimeBegin = flightDateObj.subtractHours(minBufferHours + testHoursMax);
   let pcrDateTimeEnd = flightDateObj.subtractHours((maxBufferHours - bufferHoursShift) + testHoursMax);
   const impossibleUnavailableTime = Boolean(pcrDateTimeBegin > pcrDateTimeEnd);
-  const minUnavailableDatetime = (flightDateObj ? flightDateObj.subtractHours(72) : minDatetime);
+  const minUnavailableDatetime = (flightDateObj ? flightDateObj.subtractHours(mode96 ? 96: 72) : minDatetime);
   if (pcrDateTimeEnd < minUnavailableDatetime) {
     pcrDateTimeEnd = minUnavailableDatetime;
   }
@@ -87,6 +92,9 @@ const Calc = (props) => {
               </Translate>
               <Translate component="option" value="UAE">
                 UAE
+              </Translate>
+              <Translate component="option" value="Maldives">
+                Maldives
               </Translate>
               <Translate component="option" value="other">
                 other country
@@ -159,7 +167,7 @@ const Calc = (props) => {
                   type="range"
                   name="minBufferHours"
                   min="2"
-                  max="20"
+                  max="40"
                   step="1"
                   value={ minBufferHours }
                   onChange={ (event) => {
@@ -189,17 +197,43 @@ const Calc = (props) => {
             </div>) }
         </div>
         <div style={{ maxWidth: 700 }}>
-          <div class={ style.heroResult }>
+          { !mode96 && <div class={ style.heroResult }>
             <Translate>
               72 hours before departure is
             </Translate>&nbsp;
             <LocalizedDatetime dateTime={ flightDateObj.subtractHours(72) } />
-          </div>
+          </div> }
+          { mode96 && <div class={ style.heroResult }>
+            <Translate>
+              96 hours before departure is
+            </Translate>&nbsp;
+            <LocalizedDatetime dateTime={ flightDateObj.subtractHours(96) } />
+          </div> }
           { arrivalCountry === 'Turkey' && <div>
             <Translate component="div">
               <a href="https://register.health.gov.tr" target="_blank" rel="noopener noreferrer">The form for entry to Turkey</a>
               (for the private HES code receiving) must be completed after the above date/time (72 hours before departure).
             </Translate>
+          </div> }
+          { arrivalCountry === 'Maldives' && <div style={{ fontSize: 15, marginTop: 10 }}>
+            <Translate component="div">
+              <a href="https://imuga.immigration.gov.mv/ethd/create" target="_blank" rel="noopener noreferrer">The Traveller Health Declaration for entry to Maldives</a>
+              (for the private QR code receiving) must be completed within 24 hours prior departure to Maldives.
+            </Translate>
+            <Translate component="div">Beginning with date/time:</Translate>
+            <LocalizedDatetime dateTime={ flightDateObj.subtractHours(24) } />
+            <Translate component="div">and before the start of the boarding</Translate>
+            <Translate component="div">
+              Save the image to your phone, or print it out. Also, do not forget to fill this declaration again before the return flight.
+            </Translate>
+            <Translate component="div">
+              If you use iPad or iPhone and you take a photo directly from this form, go to Settings - Camera - formats and select "most compatible".
+            </Translate>
+            { props.lang === 'ru' && <div>
+              <a href="https://telegra.ph/Kak-zapolnyat-deklaraciyu-zdorovya-na-Maldivah-Rossiyanam-10-13" target="_blank" rel="noopener noreferrer">
+                Подробная инструкция для Россиян, как заполнять форму.
+              </a>
+            </div> }
           </div> }
           { arrivalCountry === 'UAE' && <div style={{ marginTop: 20 }}>
             <Translate component="div">
@@ -262,7 +296,7 @@ const Calc = (props) => {
       </div>
       <Translate component="footer">
         <span>Do a bookmark! Developed for fun by Ivan Maslov</span>
-        { props.lang === 'ru' ? <a href="https://t.me/joinchat/WQZ3VS1X2D_gIZk4" class={ style.telegram } target="_blank" rel="noopener noreferrer">
+        { props.lang === 'ru' && !showExtraSettings ? <a href="https://t.me/joinchat/WQZ3VS1X2D_gIZk4" class={ style.telegram } target="_blank" rel="noopener noreferrer">
           Подпишитесь на мой telegram канал
         </a> : '' }
         { props.lang === 'zh' ? <a href="https://t.me/tmzhang91" class={ style.telegram } target="_blank" rel="noopener noreferrer">感谢@tmzhang91</a> : '' }

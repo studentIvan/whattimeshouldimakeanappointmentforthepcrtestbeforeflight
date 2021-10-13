@@ -47,6 +47,14 @@ const DICT = {
     zh: '出发前72小时为',
     ar: 'قبل 72 ساعة من المغادرة',
   },
+  '96 hours before departure is': {
+    ru: '96 часов до вылета это',
+    es: '96 horas antes de la salida es',
+    fr: '96 heures avant le départ est',
+    de: '96 stunden vor Abflug ist',
+    zh: '出发前96小时为',
+    ar: 'قبل 96 ساعة من المغادرة',
+  },
   'What country are you flying to?': {
     ru: 'В какую страну вы летите?',
     es: '¿A qué país volarás?',
@@ -87,6 +95,14 @@ const DICT = {
     zh: '阿联酋',
     ar: 'الإمارات',
   },
+  Maldives: {
+    ru: 'Мальдивы',
+    es: 'Maldivas',
+    fr: 'Maldives',
+    de: 'die Malediven',
+    zh: '马尔代夫',
+    ar: 'ملديف',
+  },
   'other country': {
     ru: 'другую страну',
     es: 'otro país',
@@ -119,6 +135,14 @@ const DICT = {
     zh: '（对于私人HES代码接收）必须在上述日期/时间之后（出发前72小时）完成。',
     ar: '(للحصول على رمز هس الخاص تلقي) يجب أن تكتمل بعد التاريخ/الوقت أعلاه (72 ساعة قبل المغادرة).',
   },
+  '(for the private QR code receiving) must be completed within 24 hours prior departure to Maldives.': {
+    ru: '(для получения личного QR-кода) необходимо заполнить в течении суток перед вылетом на Мальдивы.',
+    es: '(para recibir el código QR privado) debe completarse dentro de las 24 horas antes de la salida a Maldivas.',
+    fr: '(pour la réception du code QR privé) doit être rempli dans les 24 heures avant le départ pour les Maldives.',
+    de: '(für den privaten QR-Code-Empfang) muss innerhalb von 24 Stunden vor Abflug auf die Malediven ausgefüllt werden.',
+    zh: '（对于私人QR码接收）必须在出发前往马尔代夫前24小时内完成。',
+    ar: '(لاستلام رمز الاستجابة السريعة الخاص) يجب أن تكتمل في غضون 24 ساعة قبل المغادرة إلى جزر المالديف.',
+  },
   'The form for entry to Turkey': {
     ru: 'Форму для получения HES-кода Турции',
     es: 'El formulario de entrada a Turquía',
@@ -126,6 +150,14 @@ const DICT = {
     de: 'Das Formular für die Einreise in die Türkei',
     zh: '入境土耳其的表格',
     ar: 'نموذج الدخول إلى تركيا',
+  },
+  'The Traveller Health Declaration for entry to Maldives': {
+    ru: 'Декларацию о состоянии здоровья путешественника для въезда на Мальдивы',
+    es: 'Declaración Sanitaria de los nómadas para la entrada en Maldivas',
+    fr: 'La Déclaration de santé des voyageurs pour l\'entrée aux Maldives',
+    de: 'Die Gesundheitserklärung für Reisende für die Einreise auf die Malediven',
+    zh: '马尔代夫入境旅客健康声明',
+    ar: 'الإعلان الصحي للمسافر لدخول ملديف',
   },
   'Check the UAE information site': {
     ru: 'Посмотрите официальный сайт ОАЭ',
@@ -286,6 +318,38 @@ const DICT = {
     de: 'Maximale Lagerzeit:',
     zh: '最长库存时间:',
     ar: 'الحد الأقصى للوقت في المخزون:',
+  },
+  'Beginning with date/time:': {
+    ru: 'Начиная с даты/времени:',
+    es: 'Comenzando con fecha / hora:',
+    fr: 'Commençant par la date /heure:',
+    de: 'Beginnend mit Datum/Uhrzeit:',
+    zh: '从日期/时间开始:',
+    ar: 'بدءا من التاريخ / الوقت:',
+  },
+  'and before the start of the boarding': {
+    ru: 'и до начала посадки в самолёт',
+    es: 'y antes de aterrizar en el avión',
+    fr: 'et avant l\'atterrissage dans l\'avion',
+    de: 'und vor der Landung im Flugzeug',
+    zh: '登机前',
+    ar: 'وقبل الصعود إلى الطائرة',
+  },
+  'Save the image to your phone, or print it out. Also, do not forget to fill this declaration again before the return flight.': {
+    ru: 'Сохраните изображение себе на телефон, либо распечатайте. Также не забудьте повторно заполнить эту декларацию, уже перед обратным вылетом домой.',
+    es: 'Guarda la imagen en tu teléfono o imprímela. Además, no olvide rellenar esta declaración de nuevo antes del vuelo de regreso.',
+    fr: 'Enregistrez l\'image sur votre téléphone ou imprimez-la. N\'oubliez pas non plus de remplir à nouveau cette déclaration avant le vol de retour.',
+    de: 'Speichern Sie das Bild auf Ihrem Telefon oder drucken Sie es aus. Vergessen Sie auch nicht, diese Erklärung vor dem Rückflug erneut auszufüllen.',
+    zh: '将图像保存到您的手机，或打印出来。 另外，不要忘记在回程航班之前再次填写此声明。',
+    ar: 'احفظ الصورة على هاتفك ، أو قم بطباعتها. أيضا, لا تنسى أن تملأ هذا الإعلان مرة أخرى قبل رحلة العودة.',
+  },
+  'If you use iPad or iPhone and you take a photo directly from this form, go to Settings - Camera - formats and select "most compatible".': {
+    ru: 'Если у вас iPad или iPhone и вы делаете фотографию прямо из этой формы, зайдите в настройки - камера - форматы и выберите "наиболее совместимый".',
+    es: 'Si utiliza iPad o iPhone y toma una foto directamente desde este formulario, vaya a Configuración - Cámara - formatos y seleccione "más compatible".',
+    fr: 'Si vous utilisez un iPad ou un iPhone et que vous prenez une photo directement à partir de ce formulaire, allez dans Paramètres - Formats de l\'appareil photo et sélectionnez "le plus compatible".',
+    de: 'Wenn Sie ein iPad oder iPhone verwenden und ein Foto direkt von diesem Formular aus aufnehmen, gehen Sie zu Einstellungen - Kamera - Formate und wählen Sie "Am kompatibelsten".',
+    zh: '如果您使用iPad或iPhone并直接从此表单中拍摄照片，请转到设置-相机-格式并选择"最兼容"。',
+    ar: 'إذا كنت تستخدم iPad أو iPhone وتلتقط صورة مباشرة من هذا النموذج ، فانتقل إلى تنسيقات الإعدادات - الكاميرا وحدد "الأكثر توافقا".',
   },
 };
 
