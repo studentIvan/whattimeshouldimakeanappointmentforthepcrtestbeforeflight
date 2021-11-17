@@ -55,6 +55,14 @@ const DICT = {
     zh: '出发前96小时为',
     ar: 'قبل 96 ساعة من المغادرة',
   },
+  '48 hours before departure is': {
+    ru: '48 часов до вылета это',
+    es: '48 horas antes de la salida es',
+    fr: '48 heures avant le départ est',
+    de: '48 stunden vor Abflug ist',
+    zh: '出发前48小时为',
+    ar: 'قبل 48 ساعة من المغادرة',
+  },
   'What country are you flying to?': {
     ru: 'В какую страну вы летите?',
     es: '¿A qué país volarás?',
@@ -103,6 +111,22 @@ const DICT = {
     zh: '马尔代夫',
     ar: 'ملديف',
   },
+  Morocco: {
+    ru: 'Марокко',
+    es: 'Marruecos',
+    fr: 'Maroc',
+    de: 'Marokko',
+    zh: '摩洛哥',
+    ar: 'المغرب',
+  },
+  Egypt: {
+    ru: 'Египет',
+    es: 'Egipto',
+    fr: 'Égypte',
+    de: 'Ägypten',
+    zh: '埃及',
+    ar: 'مصر',
+  },
   'other country': {
     ru: 'другую страну',
     es: 'otro país',
@@ -150,6 +174,14 @@ const DICT = {
     de: 'Das Formular für die Einreise in die Türkei',
     zh: '入境土耳其的表格',
     ar: 'نموذج الدخول إلى تركيا',
+  },
+  'Print and fill the form for entry to Egypt': {
+    ru: 'Распечатайте и заполните форму для въезда в Египет',
+    es: 'Imprimir y rellenar el formulario de entrada a Egipto',
+    fr: 'Imprimez et remplissez le formulaire d\'entrée en Égypte',
+    de: 'Drucken und füllen Sie das Formular für die Einreise nach ägypten',
+    zh: '打印并填写进入埃及的表格',
+    ar: 'طباعة وملء النموذج للدخول إلى مصر',
   },
   'The Traveller Health Declaration for entry to Maldives': {
     ru: 'Декларацию о состоянии здоровья путешественника для въезда на Мальдивы',

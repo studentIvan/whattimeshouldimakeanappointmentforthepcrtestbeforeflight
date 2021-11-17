@@ -10,7 +10,7 @@ import style from './style.css';
 const Calc = (props) => {
   extendDatePrototype();
 
-  const [arrivalCountry, setArrivalCountry] = useState('Turkey');
+  const [arrivalCountry, setArrivalCountry] = useState('other');
 
   useEffect(() => {
     if (!langIsNotFound(props)) {
@@ -36,6 +36,7 @@ const Calc = (props) => {
   const [showExtraSettings, setShowExtraSettings] = useState(false);
 
   const mode96 = arrivalCountry === 'Maldives';
+  const mode48 = arrivalCountry === 'Morocco';
 
   const minDatetime = (new Date()).getDatetimeLocalValue();
   const flightDateObj = new Date(flightDate);
@@ -60,7 +61,49 @@ const Calc = (props) => {
   const pcrDateTimeBegin = flightDateObj.subtractHours(minBufferHours + testHoursMax);
   let pcrDateTimeEnd = flightDateObj.subtractHours((maxBufferHours - bufferHoursShift) + testHoursMax);
   const impossibleUnavailableTime = Boolean(pcrDateTimeBegin > pcrDateTimeEnd);
-  const minUnavailableDatetime = (flightDateObj ? flightDateObj.subtractHours(mode96 ? 96: 72) : minDatetime);
+
+  let minUnavailableDatetime;
+  let hoursBeforeDepartureBlock;
+
+  switch (true) {
+    case mode96: {
+      minUnavailableDatetime = (flightDateObj ? flightDateObj.subtractHours(96) : minDatetime);
+      hoursBeforeDepartureBlock = (
+        <div class={ style.heroResult }>
+          <Translate>
+            96 hours before departure is
+          </Translate>&nbsp;
+          <LocalizedDatetime dateTime={ flightDateObj.subtractHours(96) } />
+        </div>
+      );
+      break;
+    }
+    case mode48: {
+      minUnavailableDatetime = (flightDateObj ? flightDateObj.subtractHours(48) : minDatetime);
+      hoursBeforeDepartureBlock = (
+        <div class={ style.heroResult }>
+          <Translate>
+            48 hours before departure is
+          </Translate>&nbsp;
+          <LocalizedDatetime dateTime={ flightDateObj.subtractHours(48) } />
+        </div>
+      );
+      break;
+    }
+    default: {
+      minUnavailableDatetime = (flightDateObj ? flightDateObj.subtractHours(72) : minDatetime);
+      hoursBeforeDepartureBlock = (
+        <div class={ style.heroResult }>
+          <Translate>
+            72 hours before departure is
+          </Translate>&nbsp;
+          <LocalizedDatetime dateTime={ flightDateObj.subtractHours(72) } />
+        </div>
+      );
+      break;
+    }
+  }
+
   if (pcrDateTimeEnd < minUnavailableDatetime) {
     pcrDateTimeEnd = minUnavailableDatetime;
   }
@@ -95,6 +138,12 @@ const Calc = (props) => {
               </Translate>
               <Translate component="option" value="Maldives">
                 Maldives
+              </Translate>
+              <Translate component="option" value="Morocco">
+                Morocco
+              </Translate>
+              <Translate component="option" value="Egypt">
+                Egypt
               </Translate>
               <Translate component="option" value="other">
                 other country
@@ -197,23 +246,53 @@ const Calc = (props) => {
             </div>) }
         </div>
         <div style={{ maxWidth: 700 }}>
-          { !mode96 && <div class={ style.heroResult }>
-            <Translate>
-              72 hours before departure is
-            </Translate>&nbsp;
-            <LocalizedDatetime dateTime={ flightDateObj.subtractHours(72) } />
-          </div> }
-          { mode96 && <div class={ style.heroResult }>
-            <Translate>
-              96 hours before departure is
-            </Translate>&nbsp;
-            <LocalizedDatetime dateTime={ flightDateObj.subtractHours(96) } />
+          { hoursBeforeDepartureBlock }
+          { arrivalCountry === 'Egypt' && <div>
+            <Translate component="div">
+              <a href="/assets/egypt_deklar.pdf" target="_blank">Print and fill the form for entry to Egypt</a>.
+            </Translate>
           </div> }
           { arrivalCountry === 'Turkey' && <div>
             <Translate component="div">
               <a href="https://register.health.gov.tr" target="_blank" rel="noopener noreferrer">The form for entry to Turkey</a>
               (for the private HES code receiving) must be completed after the above date/time (72 hours before departure).
             </Translate>
+          </div> }
+          { /** лень переводить пока что на другие языки :) */ }
+          { arrivalCountry === 'Morocco' && props.lang === 'en' && <div style={{ fontSize: 15, marginTop: 10 }}>
+          1. Bring PCR test result on paper with you. Children under the age of 11 are exempt from taking the test.
+          At the same time, tourists may be quarantined (for 10 days).<br />
+          2. Tourists who have been vaccinated and arrive in Morocco are exempt from taking a PCR test before departure and from a 10-day quarantine.
+          You must provide a vaccination certificate with a QR code in English.
+          Morocco accepts Covishield, Sinopharm, Gamaleya, Sputnik V, Oxford-AstraZeneca.
+          If a tourist is vaccinated with another vaccine, then it is necessary to fulfill the conditions of paragraph 1.
+          </div> }
+          { arrivalCountry === 'Morocco' && props.lang === 'ru' && <div style={{ fontSize: 15, marginTop: 10 }}>
+          1. Захватите с собой ПЦР на бумажном носителе. Дети до 11 лет освобождаются от сдачи теста.
+          При этом туристы будут помещены на карантин (на 10 дней).<br />
+          2. Туристы, прошедшие вакцинацию и прилетающие в Марокко, освобождаются от сдачи ПЦР-теста до вылета и от 10-дневного карантина.
+          Необходимо предоставить сертификат о вакцинации с QR-кодом на английском языке.
+          Из вакцин Марокко принимает Gamaleya, Sputnik V, Oxford-AstraZeneca, Sinopharm, Covishield.
+          Если турист привит другой вакциной, то необходимо выполнять условия пункта 1.
+          </div> }
+          { arrivalCountry === 'Egypt' && props.lang === 'ru' && <div style={{ fontSize: 15, marginTop: 10 }}>
+          Захватите также один из следующих документов:<br />
+          1. Сертификат полного курса вакцинации «Спутник V». С момента вакцинации должно пройти не менее 14 дней.
+          Граждане РФ должны предоставлять сертификат, распечатанный с сайта www.gosuslugi.ru
+          на английском языке с указанием номера заграничного паспорта и QR – кода.
+          В список одобренных вакцин так же входят AstraZeneca , Moderna, Pfizer, Sinopharma, Sinovac, Johnson Johnson.<br />
+          2. Отрицательный ПЦР типа Real Time PCR (написано RT-PCR или RT PCR) с QR-кодом на бланке. Детям до 6 лет (не включительно) ПЦР тест не нужен.
+          </div> }
+          { arrivalCountry === 'Egypt' && props.lang === 'en' && <div style={{ fontSize: 15, marginTop: 10 }}>
+          Bring one of the following documents with you:<br />
+          1. Certificate of complete vaccination from COVID-19 with two doses of Sputnik V. At least 14 days must pass from the moment of vaccination.
+          The countdown is made from the date of administration of the last dose of the vaccine, not counting the day of departure.
+          The list of approved vaccines Sinovac, AstraZeneca, Moderna, Pfizer, Sinopharma, and Johnson Johnson.
+          At the moment, only Sputnik V has been approved by Egypt from Russian vaccines.<br />
+          2. A negative PCR test.
+          The presence of a QR code on the certificate of the PCR test is mandatory (without it, the results of PCR tests will not be considered valid).
+          The certificate must contain information that the person has been tested for Real Time PCR type (written RT-PCR or RT PCR).
+          Children under 6 (not included) years of age do not need to do a PCR test.
           </div> }
           { arrivalCountry === 'Maldives' && <div style={{ fontSize: 15, marginTop: 10 }}>
             <Translate component="div">
