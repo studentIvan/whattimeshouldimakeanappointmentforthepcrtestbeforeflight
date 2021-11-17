@@ -57,7 +57,6 @@ const Calc = (props) => {
     );
   }
 
-  console.log(minBufferHours, testHoursMax, minBufferHours + testHoursMax);
   const pcrDateTimeBegin = flightDateObj.subtractHours(minBufferHours + testHoursMax);
   let pcrDateTimeEnd = flightDateObj.subtractHours((maxBufferHours - bufferHoursShift) + testHoursMax);
   const impossibleUnavailableTime = Boolean(pcrDateTimeBegin > pcrDateTimeEnd);
@@ -124,12 +123,24 @@ const Calc = (props) => {
               name="flightDate"
               value={ flightDate }
               min={ minDatetime }
-              onChange={ value => { setFlightDate(value); setBusyDate(value); } }
+              onChange={ value => {
+                /** yandex metrica goal */
+                if (typeof ym !== 'undefined') { ym(86529727,'reachGoal','chooseDatetime'); }
+                setFlightDate(value);
+                setBusyDate(value);
+              } }
             />
             &nbsp;
             <Translate>to</Translate>
             &nbsp;
-            <select name="arrivalCountry" value={ arrivalCountry } onChange={ event => setArrivalCountry(event.target.value) }>
+            <select
+              name="arrivalCountry"
+              value={ arrivalCountry }
+              onChange={ (event) => {
+                /** yandex metrica goal */
+                if (typeof ym !== 'undefined') { ym(86529727,'reachGoal','chooseCountry'); }
+                setArrivalCountry(event.target.value);
+              } }>
               <Translate component="option" value="Turkey">
                 Turkey
               </Translate>
