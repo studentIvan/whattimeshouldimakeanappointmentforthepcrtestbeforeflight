@@ -9,7 +9,7 @@ const App = () => {
   useEffect(() => {
     /** prevent the server-side rendering problems */
     if (typeof window !== 'undefined') {
-      mixpanel.init('cc7fa2cc2257fe85766fb8f8fd259199', { debug: true });
+      mixpanel.init('cc7fa2cc2257fe85766fb8f8fd259199', { debug: false });
       mixpanel.time_event('Choose flight datetime');
     }
   });
