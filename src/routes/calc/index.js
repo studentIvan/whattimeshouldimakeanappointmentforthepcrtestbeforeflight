@@ -1,4 +1,5 @@
 import { h } from 'preact';
+import mixpanel from 'mixpanel-browser';
 import { useEffect, useState } from 'preact/hooks';
 import { createTranslateComponent, createLocalizedHoursComponent,
   createLocalizedDatetimeComponent, translate, langIsNotFound } from '../../common/translations';
@@ -7,6 +8,7 @@ import DatetimeLocalInput from '../../components/datetime-local';
 import Header from '../../components/header';
 import style from './style.css';
 
+/* global ym */
 const Calc = (props) => {
   extendDatePrototype();
 
@@ -124,10 +126,15 @@ const Calc = (props) => {
               value={ flightDate }
               min={ minDatetime }
               onChange={ value => {
-                /** yandex metrica goal */
-                if (typeof ym !== 'undefined') { ym(86529727,'reachGoal','chooseDatetime'); }
                 setFlightDate(value);
                 setBusyDate(value);
+                /** metric goals */
+                if (typeof ym !== 'undefined') { ym(86529727, 'reachGoal', 'chooseDatetime'); }
+                /** track this event only once */
+                if (!window.__flightDateTimeTracked) {
+                  window.__flightDateTimeTracked = true;
+                  mixpanel.track('Choose flight datetime');
+                }
               } }
             />
             &nbsp;
@@ -137,9 +144,11 @@ const Calc = (props) => {
               name="arrivalCountry"
               value={ arrivalCountry }
               onChange={ (event) => {
-                /** yandex metrica goal */
-                if (typeof ym !== 'undefined') { ym(86529727,'reachGoal','chooseCountry'); }
-                setArrivalCountry(event.target.value);
+                const country = event.target.value;
+                setArrivalCountry(country);
+                /** metric goals */
+                if (typeof ym !== 'undefined') { ym(86529727, 'reachGoal', 'chooseCountry'); }
+                mixpanel.track('Select country', { country, lang: props.lang });
               } }>
               <Translate component="option" value="Turkey">
                 Turkey
@@ -172,7 +181,14 @@ const Calc = (props) => {
               value={ busyDate }
               min={ minUnavailableDatetime }
               max={ flightDate }
-              onChange={ value => setBusyDate(value) }
+              onChange={ (value) => {
+                setBusyDate(value);
+                /** track this event only once */
+                if (!window.__busyDateTimeTracked) {
+                  window.__busyDateTimeTracked = true;
+                  mixpanel.track('Choose busy datetime');
+                }
+              } }
             />
           </div>
           <div class={ style.calcBlock }>
@@ -296,7 +312,7 @@ const Calc = (props) => {
           </div> }
           { arrivalCountry === 'Egypt' && props.lang === 'en' && <div style={{ fontSize: 15, marginTop: 10 }}>
           Bring one of the following documents with you:<br />
-          1. Certificate of complete vaccination from COVID-19 with two doses of Sputnik V. At least 14 days must pass from the moment of vaccination.
+          1. Certificate of complete vaccination from COVID-19. At least 14 days must pass from the moment of vaccination.
           The countdown is made from the date of administration of the last dose of the vaccine, not counting the day of departure.
           The list of approved vaccines Sinovac, AstraZeneca, Moderna, Pfizer, Sinopharma, and Johnson Johnson.
           At the moment, only Sputnik V has been approved by Egypt from Russian vaccines.<br />
@@ -356,7 +372,7 @@ const Calc = (props) => {
               <LocalizedDatetime dateTime={ pcrDateTimeBegin } />
             </div>
           ) : (
-            <div class={ style.heroResult } style={{ marginTop: 20, marginBottom: 20 }}>
+            <div class={ `${ style.heroResult } ${ style.important }` } style={{ marginTop: 20, marginBottom: 20 }}>
               <Translate component="div">
                 It is necessary to make an appointment for the PCR test in the interval:
               </Translate>
@@ -384,14 +400,19 @@ const Calc = (props) => {
           </p>
         </div>
       </div>
-      <Translate component="footer">
+      { props.lang === 'en'
+      ? <footer>
+        <span>Do a bookmark and contact the developer in case of questions:
+          <a target="_blank" href="mailto:mail@studentivan.ru?subject=pcr calc question" rel="noreferrer" class={ style.telegram }>mail@studentivan.ru</a></span>
+        </footer>
+      : <Translate component="footer">
         <span>Do a bookmark! Developed for fun by Ivan Maslov</span>
         { props.lang === 'ru' && !showExtraSettings ? <a href="https://t.me/joinchat/WQZ3VS1X2D_gIZk4" class={ style.telegram } target="_blank" rel="noopener noreferrer">
           Подпишитесь на мой telegram канал
         </a> : '' }
         { props.lang === 'zh' ? <a href="https://t.me/tmzhang91" class={ style.telegram } target="_blank" rel="noopener noreferrer">感谢@tmzhang91</a> : '' }
         { props.lang === 'zh' ? <span>博士生在俄罗斯母亲的帮助翻译成中文。</span> : '' }
-      </Translate>
+      </Translate> }
     </div>
   );
 };

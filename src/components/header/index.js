@@ -1,4 +1,5 @@
 import { h } from 'preact';
+import mixpanel from 'mixpanel-browser';
 import { route } from 'preact-router';
 import { Link } from 'preact-router/match';
 import { createTranslateComponent, SUPPORTED_LOCALES } from '../../common/translations';
@@ -13,7 +14,8 @@ const Header = (props) => {
       <select
         class={ style.langChoose }
         onChange={ ({ target: { value }}) => {
-          route(`/${ value === 'en' ? '' : `${ value }/` }`)
+          mixpanel.track('Choose language', { lang: value });
+          route(`/${ value === 'en' ? '' : `${ value }/` }`);
         } }
       >
         { SUPPORTED_LOCALES.map(locale =>
