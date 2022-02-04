@@ -51,7 +51,8 @@ input[type="checkbox"] {
   vertical-align: middle;
 }
 
-label[for="showExtraSettings"] {
+label[for="showExtraSettings"],
+label[for="showUnavailable"] {
   font-size: 14px;
   color: rgb(1 27 24 / 71%);
   line-height: 30px;

@@ -32,13 +32,14 @@ const Calc = (props) => {
   const [flightDate, setFlightDate] = useState(new Date((new Date()).setDate((new Date()).getDate() + 1)).getDatetimeLocalValue());
   const [busyDate, setBusyDate] = useState(new Date((new Date()).setDate((new Date()).getDate() + 1)).getDatetimeLocalValue());
   const [testHoursMin, setTestHoursMin] = useState(24);
-  const [testHoursMax, setTestHoursMax] = useState(48);
-  const [minBufferHours, setMinBufferHours] = useState(18);
+  const [testHoursMax, setTestHoursMax] = useState(24);
+  const [minBufferHours, setMinBufferHours] = useState(22);
   const [maxBufferHours, setMaxBufferHours] = useState(5);
   const [showExtraSettings, setShowExtraSettings] = useState(false);
+  const [showUnavailable, setShowUnavailable] = useState(false);
 
   const mode96 = arrivalCountry === 'Maldives';
-  const mode48 = arrivalCountry === 'Morocco';
+  const mode48 = arrivalCountry === 'Morocco' || arrivalCountry === 'UAE';
 
   const minDatetime = (new Date()).getDatetimeLocalValue();
   const flightDateObj = new Date(flightDate);
@@ -59,7 +60,7 @@ const Calc = (props) => {
     );
   }
 
-  const pcrDateTimeBegin = flightDateObj.subtractHours(minBufferHours + testHoursMax);
+  let pcrDateTimeBegin = flightDateObj.subtractHours(minBufferHours + testHoursMax);
   let pcrDateTimeEnd = flightDateObj.subtractHours((maxBufferHours - bufferHoursShift) + testHoursMax);
   const impossibleUnavailableTime = Boolean(pcrDateTimeBegin > pcrDateTimeEnd);
 
@@ -103,6 +104,10 @@ const Calc = (props) => {
       );
       break;
     }
+  }
+
+  if (pcrDateTimeBegin < minUnavailableDatetime) {
+    pcrDateTimeBegin = minUnavailableDatetime;
   }
 
   if (pcrDateTimeEnd < minUnavailableDatetime) {
@@ -171,6 +176,18 @@ const Calc = (props) => {
             </select>
           </div>
           <div class={ style.calcBlock }>
+            <input
+              type="checkbox"
+              id="showUnavailable"
+              name="showUnavailable"
+              checked={ showUnavailable }
+              onChange={ event => setShowUnavailable(event.target.checked) }
+            />
+            <Translate component="label" for="showUnavailable">
+              show "unavailable" block (e.g. your flights are Spb - Moscow, Moscow - Dubai and after Spb you have no time)
+            </Translate>
+          </div>
+          { showUnavailable && (<div class={ style.calcBlock }>
             <Translate component="label" for="busyDate">
               Also, I will be unavailable since
             </Translate>
@@ -190,7 +207,7 @@ const Calc = (props) => {
                 }
               } }
             />
-          </div>
+          </div>) }
           <div class={ style.calcBlock }>
             <input
               type="checkbox"
@@ -352,13 +369,13 @@ const Calc = (props) => {
               to get the latest information.
             </Translate>
           </div> }
-          { arrivalCountry === 'UAE' && <div style={{ marginTop: 10, marginBottom: 20 }}>
+          {/* { arrivalCountry === 'UAE' && <div style={{ marginTop: 10, marginBottom: 20 }}>
             <Translate component="div">
               UAE airports can have their own additional restrictions. E.g. 72 hours test validity against 96 allowed by government.
               <a href="https://www.dubaiairports.ae/alert/latest-covid-19-update-" target="_blank" rel="noopener noreferrer">Check the Dubai Airports site</a>
               for example.
             </Translate>
-          </div> }
+          </div> } */}
           { impossibleUnavailableTime ? (
             <div class={ style.heroResult } style={{ marginTop: 20, marginBottom: 20 }}>
               <Translate component="div">

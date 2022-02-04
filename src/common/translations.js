@@ -79,6 +79,14 @@ const DICT = {
     zh: '我的航班于',
     ar: 'رحلتي يترك في',
   },
+  'show "unavailable" block (e.g. your flights are Spb - Moscow, Moscow - Dubai and after Spb you have no time)': {
+    ru: 'показать настройки недоступности (например вылеты Спб - Мск, Мск - Дубай и после Спб нет времени на сдачу)',
+    es: 'mostrar bloque "no disponible" (por ejemplo, sus vuelos son Spb - Moscú, Moscú - Dubái y después de Spb no tiene tiempo)',
+    fr: 'afficher le bloc "indisponible" (par exemple, vos vols sont Spb-Moscou, Moscou-Dubaï et après Spb, vous n\'avez pas le temps)',
+    de: 'block "nicht verfügbar" anzeigen (z. B. Ihre Flüge sind Spb - Moskau, Moskau - Dubai und nach Spb haben Sie keine Zeit)',
+    zh: '显示"不可用"块',
+    ar: 'إظهار كتلة "غير متوفر" ',
+  },
   to: {
     ru: 'в',
     es: 'a',
